@@ -1,14 +1,15 @@
 package com.example.hadmade;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -27,6 +28,8 @@ public class crearcuenta extends AppCompatActivity {
     FirebaseFirestore mFirestone;
     FirebaseAuth mAuth;
 
+    String id;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,27 +44,31 @@ public class crearcuenta extends AppCompatActivity {
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String emailUser= email.getText().toString().trim();
+                String emailUser = email.getText().toString().trim();
                 String passUser = password.getText().toString().trim();
 
-                if(emailUser.isEmpty() && passUser.isEmpty()){
-                    Toast.makeText(crearcuenta.this,"Complete los datos", Toast.LENGTH_SHORT).show();
-                }else {
-                    registerUser(emailUser,passUser);
+                if (emailUser.isEmpty() || passUser.isEmpty()) {
+                    Toast.makeText(crearcuenta.this, "Complete los datos", Toast.LENGTH_SHORT).show();
+                } else if (!isValidEmail(emailUser)) {
+                    Toast.makeText(crearcuenta.this, "Correo electrónico no válido", Toast.LENGTH_SHORT).show();
+                } else if (passUser.length() < 6) {
+                    Toast.makeText(crearcuenta.this, "La contraseña debe tener al menos 6 caracteres", Toast.LENGTH_SHORT).show();
+                } else {
+                    registerUser(emailUser, passUser);
                 }
             }
         });
     }
 
-    private void registerUser(String emailUser,String passUser){
-        mAuth.createUserWithEmailAndPassword(emailUser, passUser).addOnCompleteListener(new OnCompleteListener<AuthResult>(){
+    private void registerUser(String emailUser, String passUser) {
+        mAuth.createUserWithEmailAndPassword(emailUser, passUser).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
-            public void onComplete(@NonNull Task<AuthResult> task){
+            public void onComplete(@NonNull Task<AuthResult> task) {
                 String id = mAuth.getCurrentUser().getUid();
-                Map<String,Object> map = new HashMap<>();
-                map.put("id",id);
+                Map<String, Object> map = new HashMap<>();
+                map.put("id", id);
                 map.put("email", emailUser);
-                map.put("password",passUser);
+                map.put("password", passUser);
 
                 mFirestone.collection("user").document(id).set(map).addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -84,11 +91,14 @@ public class crearcuenta extends AppCompatActivity {
             }
         });
     }
+
     @Override
     public boolean onSupportNavigateUp() {
         onBackPressed();
-        return false;
+        return super.onSupportNavigateUp();
     }
 
-
+    private boolean isValidEmail(String email) {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches();
+    }
 }

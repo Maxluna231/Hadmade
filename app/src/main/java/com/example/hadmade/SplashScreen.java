@@ -20,7 +20,7 @@ public class SplashScreen extends AppCompatActivity {
             public void run(){
                 try {
                     SystemClock.sleep(3000);
-                    startActivity(new Intent(SplashScreen.this, login.class));
+                    startActivity(new Intent(SplashScreen.this , login.class));
                     finish();
                 }catch (Exception e){
 

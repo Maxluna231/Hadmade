@@ -1,23 +1,14 @@
 package com.example.hadmade;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
-
-
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -44,32 +35,15 @@ public class login extends AppCompatActivity {
         con = findViewById(R.id.contrasen);
 
 
-        cue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(login.this, crearcuenta.class));
-            }
-        });
-
-        con.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(login.this, recuperacion.class));
-            }
-        });
-
-
-
-
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String emailUser = email.getText().toString();
-                String passUser = password.getText().toString();
+                String emailUser = email.getText().toString().trim();
+                String passUser = password.getText().toString().trim();
 
 
 
-                if (emailUser.isEmpty() && passUser.isEmpty()){
+                if (emailUser.isEmpty() || passUser.isEmpty()){
                     Toast.makeText(login.this, "Ingresar los datos", Toast.LENGTH_SHORT).show();
                 }else{
                     loginUser(emailUser, passUser);
@@ -78,6 +52,23 @@ public class login extends AppCompatActivity {
         });
 
 
+
+
+        cue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(login.this, crearcuenta.class));
+            }
+        });
+
+
+
+        con.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(login.this, recuperacion.class));
+            }
+        });
 
     }
 
@@ -111,6 +102,7 @@ public class login extends AppCompatActivity {
             finish();
         }
     }
+
 
 }
 

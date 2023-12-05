@@ -6,6 +6,10 @@ plugins {
 android {
     namespace = "com.example.hadmade"
     compileSdk = 34
+    buildFeatures{
+        viewBinding = true
+    }
+   
 
     defaultConfig {
         applicationId = "com.example.hadmade"
@@ -50,9 +54,20 @@ dependencies {
     implementation ("com.google.firebase:firebase-storage:20.3.0")
     implementation ("com.google.firebase:firebase-database-collection:18.0.1")
     implementation ("com.google.firebase:firebase-database:20.3.0")
+    implementation ("com.firebaseui:firebase-ui-firestore:8.0.0")
 
+
+    implementation ("com.github.denzcoskun:ImageSlideshow:0.1.2")
+
+
+    implementation ("androidx.recyclerview:recyclerview:1.3.2")
     implementation ("androidx.cardview:cardview:1.0.0")
     implementation ("com.airbnb.android:lottie:4.2.2")
 // Java language implementation
+    implementation ("com.squareup.picasso:picasso:2.8")
+    implementation ("com.github.bumptech.glide:glide:4.13.0")
 
+    implementation ("com.orhanobut:dialogplus:1.11@aar")
+
+    implementation ("com.nostra13.universalimageloader:universal-image-loader:1.9.5" )
 }

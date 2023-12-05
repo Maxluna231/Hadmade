@@ -1,88 +1,72 @@
 package com.example.hadmade.modelo;
 
 public class user {
+    private String ciu;
+    private String cod;
+    private String dire;
+    private String loca;
+    private String name;
+    private String num;
+    private String ref;
 
-    private String nombre, ciudad,localidad,direccion,numero,postal,referencias ;
-   private  String uid;
-    public user(){
-
-    }
-    public user(String uid, String nombre, String ciudad, String localidad, String direccion, String numero, String postal, String referencias) {
-       this.uid = uid;
-        this.nombre = nombre;
-        this.ciudad = ciudad;
-        this.localidad = localidad;
-        this.direccion = direccion;
-        this.numero = numero;
-        this.postal = postal;
-        this.referencias = referencias;
-
-    }
-    public String getUid() {
-        return uid;
-    }
-    public void setUid(String uid) {
-        this.uid = uid;
+    // Constructor vacío necesario para Firestore
+    public user() {
     }
 
-    public String getNombre() {
-        return nombre;
+    // Getters y Setters
+    public String getCiu() {
+        return ciu;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setCiu(String ciu) {
+        this.ciu = ciu;
     }
 
-    public String getCiudad() {
-        return ciudad;
+    public String getCod() {
+        return cod;
     }
 
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public void setCod(String cod) {
+        this.cod = cod;
     }
 
-    public String getLocalidad() {
-        return localidad;
+    public String getDire() {
+        return dire;
     }
 
-    public void setLocalidad(String localidad) {
-        this.localidad = localidad;
+    public void setDire(String dire) {
+        this.dire = dire;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getLoca() {
+        return loca;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setLoca(String loca) {
+        this.loca = loca;
     }
 
-    public String getNumero() {
-        return numero;
+    public String getName() {
+        return name;
     }
 
-    public void setNumero(String numero) {
-        this.numero = numero;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getPostal() {
-        return postal;
+    public String getRef() {
+        return ref;
     }
 
-    public void setPostal(String postal) {
-        this.postal = postal;
+    public void setRef(String ref) {
+        this.ref = ref;
     }
 
-    public String getReferencias() {
-        return referencias;
+    public String getNum() {
+        return num;
     }
 
-    public void setReferencias(String referencias) {
-        this.referencias = referencias;
-    }
-
-    @Override
-    public String toString(){
-        return nombre;
+    public void setNum(String num) {
+        this.num = num;
     }
 }
